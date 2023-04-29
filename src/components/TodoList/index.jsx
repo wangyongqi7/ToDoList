@@ -14,19 +14,19 @@ function Index() {
     };
     const removeByIdx = (id) => {
         setTodoItems((prev) => {
-            prev.filter((_, idx) => idx !== id)
+            return prev.filter((_, idx) => idx !== id)
         })
     }
     useEffect(() => {
-        setInterval(() => {
+        let id = setInterval(() => {
             console.log("定时器触发了" + new Date())
             setTodoItems((prevState) => {
                 return [...prevState]
             })
         }, 5 * 1000)
-        console.log("组件加载时执行了useEffect的函数")
+
         return () => {
-            console.log("组件卸载时执行了useEffect的返回函数")
+            clearInterval(id)
         }
     }, [])
 
